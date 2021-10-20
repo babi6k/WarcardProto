@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 3734871041281075543}
   - component: {fileID: 3734871041281075541}
   - component: {fileID: 3734871041281075498}
+  - component: {fileID: 1197670227672622249}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: GameHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131,6 +132,18 @@ MonoBehaviour:
   cardPrefab: {fileID: 4795930222984306757, guid: f1ece2e2f6d1ea14b9d436b853d7d6e0,
     type: 3}
   cardsParent: {fileID: 3734871042450202810}
+--- !u!114 &1197670227672622249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3734871041281075542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 636f799d2e5bdb94a82eefee45a26a0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3734871042450202789
 GameObject:
   m_ObjectHideFlags: 0

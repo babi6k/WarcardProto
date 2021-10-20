@@ -9,12 +9,6 @@ namespace WarcardProto
         public Card cardPrefab;
         public Transform cardsParent;
 
-        private void Start()
-        {
-            CreateNewDeck();
-            Shuffle();
-        }
-
         public void CreateNewDeck()
         {
             for (int i = 0; i < 4; i++)
@@ -56,6 +50,11 @@ namespace WarcardProto
             }
         }
 
+        public void AddCard(Card newCard)
+        {
+            cards.Add(newCard);
+        }
+
         public void Shuffle()
         {
             List<Card> shuffledCards = new List<Card>();
@@ -66,6 +65,11 @@ namespace WarcardProto
                 cards[i] = cards[randomNumber];
                 cards[randomNumber] = currentCard;
             }  
+        }
+
+        public void EmptyDeck()
+        {
+            cards.Clear();
         }
     }
 }
