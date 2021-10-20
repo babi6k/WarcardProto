@@ -1,23 +1,29 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace WarcardProto
 {
     public class Card : MonoBehaviour
     {
-        public int rank; // rank can be between 0 - 12 Ace is 12 , two is 0 
         public Suit suit; // suit can be between 0-3  
+        public int rank; // rank can be between 0 - 12 Ace is 12 , two is 0 
+
         SpriteRenderer spriteRenderer;
 
-        private void Awake() 
+        public Card(int newSuit, int newRank)
+        {
+            rank = newRank;
+            suit = (Suit)newSuit;
+        }
+
+        private void Awake()
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
         public void ChangeModel(Sprite sprite, bool isActive)
         {
-            spriteRenderer.sprite = sprite;
             gameObject.SetActive(isActive);
+            spriteRenderer.sprite = sprite;
         }
     }
 }
