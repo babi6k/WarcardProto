@@ -6,8 +6,6 @@ namespace WarcardProto
     public class SpriteHandler : MonoBehaviour
     {
         public List<Sprite> cardModels;
-        public Card currentPlayerCard;
-        public Card currentAICard;
         public Sprite coverCardPlayer;
         public Sprite coverCardAI;
         public Transform displayPlayerCard;
@@ -30,16 +28,12 @@ namespace WarcardProto
             AICard.ChangeModel(GetCardModel(AICard.suit, AICard.rank), true);
         }
 
-        public void DisableCards()
-        {
-            currentPlayerCard.ChangeModel(coverCardPlayer, false);
-            currentAICard.ChangeModel(coverCardAI, false);
-        }
-
         public void ShowCoverCards()
         {
-            currentPlayerCard.ChangeModel(coverCardPlayer, true);
-            currentAICard.ChangeModel(coverCardAI, true);
+            Card playerCard = displayPlayerCard.GetComponentInChildren<Card>();
+            Card AICard = displayAICard.GetComponentInChildren<Card>();
+            playerCard.ChangeModel(coverCardPlayer, true);
+            AICard.ChangeModel(coverCardAI, true);
         }
     }
 }

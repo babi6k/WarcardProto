@@ -10,35 +10,61 @@ namespace WarcardProto
         Deck mainDeck;
 
         SpriteHandler spriteHandler;
+        bool warIsOn = false;
 
-        private void Awake() 
+        private void Awake()
         {
             spriteHandler = GetComponent<SpriteHandler>();
-            mainDeck= GetComponent<Deck>();
+            mainDeck = GetComponent<Deck>();
         }
 
-        private void Start() 
+        private void Start()
         {
             mainDeck.CreateNewDeck();
             mainDeck.Shuffle();
             DealCards();
         }
 
-          void Update()
+        void Update()
         {
             if (Input.GetMouseButtonDown(0))
             {
-                PlayTurn();
+                if (!warIsOn)
+                {
+                    PlayTurn();
+                }
+                else
+                {
+                    PlayWar();
+                }
             }
+        }
+
+        private void PlayWar()
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                ChangeDisplayCards();
+                spriteHandler.ShowCoverCards();
+                mainDeck.AddCard(player.displayCard);
+                mainDeck.AddCard(AI.displayCard);
+                CheckEmpty();
+            }
+            warIsOn = false;
         }
 
         private void PlayTurn()
         {
-            player.ChangeDisplayCard();
-            AI.ChangeDisplayCard();
+            ChangeDisplayCards();
             spriteHandler.ShowCards();
             CheckWin();
             CheckEmpty();
+        }
+
+        private void ChangeDisplayCards()
+        {
+            player.ChangeDisplayCard();
+            AI.ChangeDisplayCard();
         }
 
         private void CheckEmpty()
@@ -98,7 +124,7 @@ namespace WarcardProto
 
         private void War()
         {
-            Debug.Log("Going to War");
+            warIsOn = true;
         }
     }
 }

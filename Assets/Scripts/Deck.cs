@@ -26,6 +26,7 @@ namespace WarcardProto
 
         public Card TakeCard()
         {
+            if (cards.Count <= 0) return null;
             Card topCard = cards[0];
             cards.RemoveAt(0);
             return topCard;

@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 76fd3bcd033a0104b9b8e9ac55837faa,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -434,6 +435,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 9033716265059853611}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1706160464 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3734871042450202810, guid: af924765d018e00498a65346d181860e,
+    type: 3}
+  m_PrefabInstance: {fileID: 3734871041836765674}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2129231087 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8391582451706794828, guid: edade23be948e914d8484106a855806b,
@@ -548,7 +555,8 @@ PrefabInstance:
       propertyPath: currentPlayerCardTransform
       value: 
       objectReference: {fileID: 325226099}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3734871041281075541, guid: af924765d018e00498a65346d181860e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: af924765d018e00498a65346d181860e, type: 3}
 --- !u!1001 &6736645283048329661
 PrefabInstance:
@@ -727,6 +735,11 @@ PrefabInstance:
       propertyPath: currentCards
       value: 
       objectReference: {fileID: 159008443}
+    - target: {fileID: 7555383305693710099, guid: 38557c89d5af80f498edccc8fe73e049,
+        type: 3}
+      propertyPath: mainDeckCardsHolder
+      value: 
+      objectReference: {fileID: 1706160464}
     - target: {fileID: 7716753423815256501, guid: 38557c89d5af80f498edccc8fe73e049,
         type: 3}
       propertyPath: m_RootOrder
@@ -842,6 +855,11 @@ PrefabInstance:
       propertyPath: currentCards
       value: 
       objectReference: {fileID: 669221813}
+    - target: {fileID: 8391582451706794828, guid: edade23be948e914d8484106a855806b,
+        type: 3}
+      propertyPath: mainDeckCardsHolder
+      value: 
+      objectReference: {fileID: 1706160464}
     - target: {fileID: 8728235999533353705, guid: edade23be948e914d8484106a855806b,
         type: 3}
       propertyPath: m_IsActive

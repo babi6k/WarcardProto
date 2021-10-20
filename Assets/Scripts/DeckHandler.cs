@@ -29,9 +29,14 @@ namespace WarcardProto
                 }
             }
             Card newCard = currentCards.TakeCard();
-            newCard.transform.SetParent(displayCardParent);
-            displayCard = newCard;
-            newCard.transform.position = displayCardParent.position;
+            if (newCard != null)
+            {
+                newCard.gameObject.SetActive(true);
+                newCard.transform.SetParent(displayCardParent);
+                displayCard = newCard;
+                newCard.transform.position = displayCardParent.position;
+            }
+
         }
 
         public void AddCards(Deck newCards)
