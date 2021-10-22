@@ -1,5 +1,5 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace WarcardProto
 {
@@ -7,12 +7,16 @@ namespace WarcardProto
     {
         public DeckHandler player;
         public DeckHandler AI;
+        public GameObject fightStart;
+        public GameObject fightEffect;
         Deck mainDeck;
 
         SpriteHandler spriteHandler;
         bool warIsOn = false;
+        [HideInInspector]
         public bool someoneWin = false;
         bool playerWin = false;
+        [HideInInspector]
         public bool isStartDuel = false;
         bool isPressed = false;
         int countTurns = 0;
@@ -71,6 +75,8 @@ namespace WarcardProto
                 {
                     isPressed2 = true;
                     countTurns++;
+                    fightStart.SetActive(false);
+                    fightEffect.SetActive(false);
                 }
             }
         }
@@ -120,7 +126,7 @@ namespace WarcardProto
                 player.EmptyBank();
                 if (player.IsEmpty())
                 {
-                    Debug.Log("Player Lose");
+                    WinGame(true);
                 }
             }
 
@@ -129,7 +135,7 @@ namespace WarcardProto
                 AI.EmptyBank();
                 if (AI.IsEmpty())
                 {
-                    Debug.Log("AI Lose");
+                    WinGame(false);
                 }
             }
         }
@@ -176,6 +182,9 @@ namespace WarcardProto
         {
             warIsOn = true;
             countTurns = 0;
+            fightStart.SetActive(true);
+            fightEffect.SetActive(true);
+            fightEffect.GetComponent<ParticleSystem>().Play();
         }
 
         private void WinDuel()
@@ -187,8 +196,25 @@ namespace WarcardProto
 
         private void WinGame(bool AIWin)
         {
-
+            if (AIWin)
+            {
+                Invoke(nameof(LoadAIWin), 1f);
+            }
+            else
+            {
+                Invoke(nameof(LoadPlayerWin), 1f);
+            }
         }
-    
+
+        private void LoadAIWin()
+        {
+            SceneManager.LoadScene(1);
+        }
+
+        private void LoadPlayerWin()
+        {
+            SceneManager.LoadScene(2);
+        }
+
     }
 }
