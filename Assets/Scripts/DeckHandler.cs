@@ -18,6 +18,8 @@ namespace WarcardProto
             bankCards.AddCards(wonCards.cards);
         }
 
+        //Change Display card 
+        // If there is already a display card hide it and add to main deck again for ref
         public void ChangeDisplayCard()
         {
             if (displayCard != null)
@@ -28,6 +30,7 @@ namespace WarcardProto
                     displayCardParent.GetChild(i).SetParent(mainDeckCardsHolder);
                 }
             }
+            //Taking a card from the deck then setting the parent as the root for displaying
             Card newCard = currentCards.TakeCard();
             if (newCard != null)
             {

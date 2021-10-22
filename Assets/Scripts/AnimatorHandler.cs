@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace WarcardProto
 {
@@ -53,7 +52,6 @@ namespace WarcardProto
         {
             gameObject.SetActive(true);
             flipFlag = true;
-            //animator.SetBool("flip", true);
         }
 
         public void GoToBank(bool playerWin)
@@ -67,9 +65,9 @@ namespace WarcardProto
         {
             gameObject.SetActive(true);
             warFlag = true;
-            //animator.SetBool("war", true);
         }
 
+        //Animation Event Methods
         public void Hide()
         {
             gameObject.SetActive(false);

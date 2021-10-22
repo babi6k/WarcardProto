@@ -34,7 +34,7 @@ namespace WarcardProto
         {
             return cardModels[(int)suit * 13 + rank];
         }
-
+        //Animation with coroutines as everything should be according to time
         IEnumerator AnimateFlip()
         {
             playerAnimatorHandler.FlipCard();
@@ -57,6 +57,19 @@ namespace WarcardProto
             yield return new WaitForSeconds(warCardTime);
         }
 
+        IEnumerator AnimateCardsBank(bool playerWin)
+        {
+            playerAnimatorHandler.GoToBank(playerWin);
+            AIanimatorHandler.GoToBank(playerWin);
+            yield return new WaitForSeconds(flipTime);
+            playerCurrentCard.gameObject.SetActive(false);
+            AICurrentCard.gameObject.SetActive(false);
+            yield return new WaitForSeconds(bankCardTime);
+            ResetAnimatorHandlers();
+            //HideAnimatorHandlers();
+            yield return new WaitForSeconds(bankCardTime);
+        }
+
         private void ResetAnimatorHandlers()
         {
             playerAnimatorHandler.transform.position = displayPlayerCard.position;
@@ -73,19 +86,7 @@ namespace WarcardProto
             AIanimatorHandler.gameObject.SetActive(false);
         }
 
-        IEnumerator AnimateCardsBank(bool playerWin)
-        {
-            playerAnimatorHandler.GoToBank(playerWin);
-            AIanimatorHandler.GoToBank(playerWin);
-            yield return new WaitForSeconds(flipTime);
-            playerCurrentCard.gameObject.SetActive(false);
-            AICurrentCard.gameObject.SetActive(false);
-            yield return new WaitForSeconds(bankCardTime);
-            ResetAnimatorHandlers();
-            //HideAnimatorHandlers();
-            yield return new WaitForSeconds(bankCardTime);
-        }
-
+        //Getting the child from the card holder and assigning a ref for the card 
         public void UpdateDisplayCards()
         {
             playerCurrentCard = displayPlayerCard.GetComponentInChildren<Card>();
@@ -123,26 +124,6 @@ namespace WarcardProto
         {
             playerCurrentCard.ChangeModel(coverCardPlayer, true);
             AICurrentCard.ChangeModel(coverCardAI, true);
-        }
-
-        public void FlipCard()
-        {
-            StartCoroutine(FlippingCard());
-        }
-
-        private IEnumerator FlippingCard()
-        {
-            for (int i = 0; i <= 180; i += 10)
-            {
-                playerCurrentCard.transform.rotation = Quaternion.Euler(0, i, 0);
-                AICurrentCard.transform.rotation = Quaternion.Euler(0, i, 0);
-                if (i == 90)
-                {
-                    playerCurrentCard.GetComponent<SpriteRenderer>().sprite = coverCardPlayer;
-                    AICurrentCard.GetComponent<SpriteRenderer>().sprite = coverCardAI;
-                }
-                yield return new WaitForSeconds(0.01f);
-            }
         }
     }
 }
