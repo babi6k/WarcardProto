@@ -290,6 +290,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114960206652300638, guid: 9e4577abe56a95f4a91d29a0473cd30c,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114960206652300638, guid: 9e4577abe56a95f4a91d29a0473cd30c,
+        type: 3}
       propertyPath: OnlyDeactivate
       value: 0
       objectReference: {fileID: 0}
@@ -313,7 +318,8 @@ PrefabInstance:
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114960206652300638, guid: 9e4577abe56a95f4a91d29a0473cd30c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9e4577abe56a95f4a91d29a0473cd30c, type: 3}
 --- !u!114 &515362492 stripped
 MonoBehaviour:
@@ -1273,6 +1279,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6736645281824604742, guid: 56dd95520eb093d408bb9117500ef0ee,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 576c02b0726f1d24d8fe154193e14ec4,
+        type: 3}
     - target: {fileID: 6736645282551625484, guid: 56dd95520eb093d408bb9117500ef0ee,
         type: 3}
       propertyPath: m_Camera
