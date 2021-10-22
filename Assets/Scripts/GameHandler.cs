@@ -11,6 +11,11 @@ namespace WarcardProto
 
         SpriteHandler spriteHandler;
         bool warIsOn = false;
+        public bool someoneWin = false;
+        bool playerWin = false;
+        public bool isStartDuel = false;
+        bool isPressed = false;
+        int countTurns = 0;
 
         private void Awake()
         {
@@ -27,30 +32,70 @@ namespace WarcardProto
 
         void Update()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonUp(0) && !isStartDuel && !isPressed)
             {
-                if (!warIsOn)
+                isStartDuel = !isStartDuel;
+                isPressed = true;
+            }
+
+            if (isStartDuel)
+            {
+                if (!someoneWin && !warIsOn)
                 {
                     PlayTurn();
                 }
-                else
+                if (someoneWin)
                 {
-                    PlayWar();
+                    WinState();
+                }
+                if (warIsOn)
+                {
+                    WarState();
+                }
+            }
+        }
+
+        private void WarState()
+        {
+            if (countTurns > 3)
+            {
+                isPressed = true;
+                warIsOn = false;
+                return;
+            }
+            bool isPressed2 = false;
+            if (Input.GetMouseButtonDown(0) && !isPressed2)
+            {
+                PlayWar();
+                if (isPressed)
+                {
+                    isPressed2 = true;
+                    countTurns++;
+                }
+            }
+        }
+
+        private void WinState()
+        {
+            bool isPressed2 = false;
+            if (Input.GetMouseButtonDown(0) && !isPressed2)
+            {
+                spriteHandler.CardsGoBank(playerWin);
+                if (isPressed)
+                {
+                    isPressed = false;
+                    isPressed2 = true;
                 }
             }
         }
 
         private void PlayWar()
         {
-            for (int i = 0; i < 3; i++)
-            {
-                ChangeDisplayCards();
-                spriteHandler.ShowCoverCards();
-                mainDeck.AddCard(player.displayCard);
-                mainDeck.AddCard(AI.displayCard);
-                CheckEmpty();
-            }
-            warIsOn = false;
+            ChangeDisplayCards();
+            spriteHandler.War();
+            mainDeck.AddCard(player.displayCard);
+            mainDeck.AddCard(AI.displayCard);
+            CheckEmpty();
         }
 
         private void PlayTurn()
@@ -65,6 +110,7 @@ namespace WarcardProto
         {
             player.ChangeDisplayCard();
             AI.ChangeDisplayCard();
+            spriteHandler.UpdateDisplayCards();
         }
 
         private void CheckEmpty()
@@ -107,10 +153,14 @@ namespace WarcardProto
             else if (player.displayCard.rank > AI.displayCard.rank)
             {
                 Reward(player);
+                someoneWin = true;
+                playerWin = true;
             }
             else
             {
                 Reward(AI);
+                someoneWin = true;
+                playerWin = false;
             }
         }
 
@@ -125,6 +175,20 @@ namespace WarcardProto
         private void War()
         {
             warIsOn = true;
+            countTurns = 0;
         }
+
+        private void WinDuel()
+        {
+            someoneWin = true;
+            countTurns = 0;
+        }
+
+
+        private void WinGame(bool AIWin)
+        {
+
+        }
+    
     }
 }
